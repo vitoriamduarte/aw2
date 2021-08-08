@@ -1,24 +1,25 @@
-<?php 
+<form action="myprocessingscript.php" method="POST">
+<input name="field1" type="text" />
 
+<input type="submit" name="submit" value="Save Data">
+</form>
 
-foreach($_SERVER as $x =>$y){ 
-
- 
-
-    echo  $x .'_';
-
- 
-
-    echo "<br>";
-
-
-    if(!is_array($y)){
-
-        echo  $y;
-
-    }
-
-    echo "<br>";
-
+<?php
+if(isset($_POST['field1'])) {
+    $data = $_POST['field1'] . '-' . $_POST['field2'] . "\n";
+    $filename = date('YmdHis').".txt";
+    if (!file_exists($filename)) {
+        $fh = fopen($filename, 'w') or die("Não é possível criar o arquivo");
+    }
+    $ret = file_put_contents($filename, $data, FILE_APPEND | LOCK_EX);
+    if($ret === false) {
+        die('Contem um erro no arquivo');
+    }
+    else {
+        echo "$ret bytes written to file";
+    }
+}
+else {
+   die('sem dados para processar');
 }
 ?>
