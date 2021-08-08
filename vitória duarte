@@ -1,12 +1,12 @@
 <form action="myprocessingscript.php" method="POST">
-<input name="field1" type="text" />
+<input name="teste1" type="text" />
 
 <input type="submit" name="submit" value="Save Data">
 </form>
 
 <?php
-if(isset($_POST['field1'])) {
-    $data = $_POST['field1'] . '-' . $_POST['field2'] . "\n";
+if(isset($_POST['teste1'])) {
+    $data = $_POST['teste1'] . '-' . $_POST['teste2'] . "\n";
     $filename = date('YmdHis').".txt";
     if (!file_exists($filename)) {
         $fh = fopen($filename, 'w') or die("Não é possível criar o arquivo");
